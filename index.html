@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./public/output.css" />
+
+        <!-- font-awesome cdnjs link -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <title>MealDB API</title>
+    </head>
+    <body>
+        <img src="./assets/logo.png" alt="logo" class="max-w-20 mx-auto py-6" />
+
+        <!-- hero-section -->
+        <div
+            class="hero h-72"
+            style="background-image: url(./assets/page-title.jpg)"
+        >
+            <div class="hero-overlay"></div>
+            <div class="hero-content text-neutral-content text-center">
+                <div class="max-w-md">
+                    <h1 class="mb-5 text-5xl font-bold">
+                        Search Your Favorite Recipe
+                    </h1>
+                    <p class="mb-5">
+                        A handful of simple ingredients typify the fresh,
+                        vibrant flavors of Greek cooking
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center border-gray-300 my-8">
+            <input
+                type="text"
+                name="Search"
+                id="input-field"
+                placeholder="Search your favorite meal"
+                class="outline-none px-4 py-2 border rounded-lg rounded-r-none text-xs"
+            />
+            <div
+                id="search-btn"
+                class="bg-teal-600 px-1 py-1 border rounded-r-lg"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <!-- Recipe Section -->
+        <div>
+            <h1 class="text-3xl font-medium text-center pb-6">Latest Recipe</h1>
+            <!-- showing loader -->
+            <div id="loader" class="hidden text-center my-10">
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
+            <div
+                id="recipe-container"
+                class="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 gap-y-6 px-4"
+            ></div>
+        </div>
+
+        <!-- axios link -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./js/meal.js"></script>
+    </body>
+</html>
