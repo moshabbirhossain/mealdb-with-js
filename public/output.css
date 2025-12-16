@@ -1452,6 +1452,31 @@
       padding-inline: calc(var(--size) / 2 - var(--border));
     }
   }
+  .footer {
+    @layer daisyui.l1.l2.l3 {
+      display: grid;
+      width: 100%;
+      grid-auto-flow: row;
+      place-items: start;
+      column-gap: calc(0.25rem * 4);
+      row-gap: calc(0.25rem * 10);
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      & > * {
+        display: grid;
+        place-items: start;
+        gap: calc(0.25rem * 2);
+      }
+      &.footer-center {
+        grid-auto-flow: column dense;
+        place-items: center;
+        text-align: center;
+        & > * {
+          place-items: center;
+        }
+      }
+    }
+  }
   .card-body {
     @layer daisyui.l1.l2.l3 {
       display: flex;
@@ -1617,6 +1642,9 @@
   .resize {
     resize: both;
   }
+  .grid-flow-col {
+    grid-auto-flow: column;
+  }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -1631,6 +1659,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-y-6 {
     row-gap: calc(var(--spacing) * 6);
@@ -1677,6 +1708,9 @@
       background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
+  .bg-neutral {
+    background-color: var(--color-neutral);
+  }
   .bg-pink-700 {
     background-color: var(--color-pink-700);
   }
@@ -1691,8 +1725,14 @@
   .mask-repeat {
     mask-repeat: repeat;
   }
+  .fill-current {
+    fill: currentcolor;
+  }
   .p-2 {
     padding: calc(var(--spacing) * 2);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
   .p-6 {
     padding: calc(var(--spacing) * 6);
@@ -1827,6 +1867,16 @@
       }
     }
   }
+  .sm\:footer-horizontal {
+    @media (width >= 40rem) {
+      @layer daisyui.l1.l2 {
+        grid-auto-flow: column;
+        &.footer-center {
+          grid-auto-flow: row dense;
+        }
+      }
+    }
+  }
   .md\:right-0 {
     @media (width >= 48rem) {
       right: calc(var(--spacing) * 0);
@@ -1840,6 +1890,16 @@
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .md\:place-self-center {
+    @media (width >= 48rem) {
+      place-self: center;
+    }
+  }
+  .md\:justify-self-end {
+    @media (width >= 48rem) {
+      justify-self: flex-end;
     }
   }
   .lg\:right-0 {
