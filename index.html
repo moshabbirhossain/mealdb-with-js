@@ -59,14 +59,38 @@
             <div id="loader" class="hidden text-center my-10">
                 <span class="loading loading-dots loading-xl"></span>
             </div>
+
             <div
                 id="recipe-container"
-                class="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 gap-y-6 px-4"
+                class="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 gap-y-6 px-4 mb-10"
             ></div>
+            <!-- Modal Overlay -->
+            <div
+                id="modal"
+                class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            >
+                <!-- Modal Content -->
+                <div
+                    id="modal-content"
+                    class="bg-pink-700 rounded-xl w-2/3 max-w-lg p-6 relative shadow-2xl text-white"
+                ></div>
+            </div>
+        </div>
+
+        <!-- jumping button bottom to top -->
+        <div>
+            <button
+                id="jump-btn"
+                class="hidden fixed bottom-4 right-0 text-green-500 text-xl"
+                title="Go to top"
+            >
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
         </div>
 
         <!-- axios link -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./js/meal.js"></script>
+        <script src="./js/jumping.js"></script>
     </body>
 </html>

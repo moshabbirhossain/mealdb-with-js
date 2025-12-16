@@ -36,7 +36,7 @@ function displayRecipes(recipes) {
                     ${recipe.strInstructions}
                 </p>
                 <div class="card-actions justify-end">
-                    <button class="btn bg-teal-600 text-white">
+                    <button class="view-data btn bg-teal-600 text-white" data-id="${recipe.idMeal}">
                         View Details
                     </button>
                 </div>
@@ -53,14 +53,6 @@ document.getElementById("search-btn").addEventListener("click", () => {
     // searchField.value = "";
 
     loadRecipes(searchText);
-    // for (const recipe of recipes) {
-    //     if (recipe.strMeal !== searchText) {
-    //         console.log("Data not found");
-    //         hideLoader();
-    //     } else {
-    //         loadRecipes(searchText);
-    //     }
-    // }
 });
 function showLoader() {
     const loaderElement = document.getElementById("loader");
@@ -73,3 +65,65 @@ function hideLoader() {
 }
 
 loadRecipes();
+
+document.getElementById("recipe-container").addEventListener("click", (e) => {
+    const btn = e.target.closest(".view-data");
+    if (!btn) return;
+    const { id } = btn.dataset;
+    loadViewData(id);
+});
+
+async function loadViewData(id) {
+    // console.log(id);
+    openModal();
+
+    const apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    const res = await axios.get(apiUrl);
+    const recipe = res.data.meals?.[0];
+    showModalData(recipe);
+    // const modal = document.getElementById("modal");
+
+    // modal.addEventListener("click", (e) => {
+    //     if (e.target === modal) modal.classList.add("hidden");
+    // });
+}
+
+function showModalData(recipe) {
+    const modalElement = document.getElementById("modal-content");
+    modalElement.innerHTML = `
+    <figure>
+        <img src="${recipe.strMealThumb}" alt="card-image" class='max-h-48 w-full px-6'/>
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title">${recipe.strMeal}</h2>
+        <p class="h-36 overflow-y-clip">
+            ${recipe.strInstructions}
+        </p>
+        <!-- Close Button -->
+        <div class="mt-6 flex justify-end">
+            <button
+                id="modal-close"
+                class="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700"
+            >
+                Close
+            </button>
+        </div>
+    </div>
+`;
+}
+// modal functionalities
+function openModal() {
+    const modal = document.getElementById("modal");
+    modal.classList.remove("hidden");
+}
+
+
+// closing modal functionalities
+const modal = document.getElementById("modal");
+modal.addEventListener("click", (e) => {
+    // 1. Check if the user clicked the Close button
+    // OR if they clicked the background overlay itself
+    if (e.target.id === "modal-close" || e.target === modal) {
+        modal.classList.add("hidden");
+    }
+});
