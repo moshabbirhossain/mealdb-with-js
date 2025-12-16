@@ -25,7 +25,7 @@ function displayRecipes(recipes) {
     }
     for (const recipe of recipes) {
         const div = document.createElement("div");
-        div.classList = "card bg-base-100 w-64 shadow-md mx-auto";
+        div.classList = "card bg-base-100 w-80 lg:w-64 shadow-md mx-auto";
         div.innerHTML = `
             <figure>
                 <img src="${recipe.strMealThumb}" alt="card-image" />
